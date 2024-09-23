@@ -1,0 +1,44 @@
+// Off to the races!
+function race(animal) {
+    // Build the random time in the scope of this function
+    // This insures that we get a new random length each time this is run
+    console.log(`${animal} has started the race!`);
+    const between1and10secs = Math.floor(Math.random() * 10 + 1);
+    // We want to return a promise...
+    return new Promise((resolve) => {
+        // ...that will resolve between 1-10 seconds
+        setTimeout(
+            () =>
+                resolve(
+                    `${animal} finished in ${between1and10secs} seconds`
+                ),
+            // multiply teh random value by 1000
+            // because setTimeout() uses milliseconds
+            between1and10secs * 1000
+        );
+    });
+}
+
+const tortoisePromise = race('Tortoise');
+const harePromise = race('Hare');
+
+Promise.race([tortoisePromise, harePromise])
+    .then((winner) => {
+        // the `winner` variable is assigned to whichever promise finishes first...
+        // it's the value that is returned via onfullfilled
+        // ...so we can tell the user who won.
+        console.log(`Winner: ${winner}\n`);
+    })
+    .catch((error) => {
+        // Just in case something busted, let's log it
+        console.error(`Error: ${error}`);
+    })
+    .finally(() => {
+        // Once all the promises are done, we return the times
+        Promise.all([tortoisePromise, harePromise]).then(
+            ([tortoiseResult, hareResult]) => {
+                console.log(tortoiseResult);
+                console.log(hareResult);
+            }
+        );
+    });
