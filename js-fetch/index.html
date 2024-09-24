@@ -3,9 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GitHub Explorer</title>
+    <!-- Bulma CSS framework for styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- Link to our custom CSS file -->
+    <link rel="stylesheet" href="./styles/styles.css">
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation bar -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <i class="fab fa-github"></i>
+                <span class="ml-2">GitHub Explorer</span>
+            </a>
+        </div>
+        <!-- Dark mode toggle button -->
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <button id="dark-mode-toggle" class="button">
+                    <span class="icon">
+                        <i class="fas fa-moon"></i>
+                    </span>
+                    <span>Toggle Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- The rest of your HTML remains unchanged -->
     
+    <!-- Hero section for main title -->
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <p class="title">Explore GitHub Users, Repos, and Issues</p>
+            <p class="subtitle">Discover amazing developers, projects, and their issues!</p>
+        </div>
+    </section>
+
+    <!-- Main content container -->
+    <div class="container mt-5">
+        <!-- Two-column layout for user search and trending repos -->
+        <div class="columns">
+            <!-- Left column: GitHub user search -->
+            <div class="column is-half">
+                <h2 class="title is-4">Search GitHub User</h2>
+                <!-- Form for user search -->
+                <form id="github-form">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input class="input" type="text" id="github-username" placeholder="Enter GitHub username" required>
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <span>Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Additional search buttons -->
+                <div class="field is-grouped mt-3">
+                    <div class="control">
+                        <button id="search-add" class="button is-primary">Search and Add</button>
+                    </div>
+                    <div class="control">
+                        <button id="search-replace" class="button is-warning">Search and Replace</button>
+                    </div>
+                </div>
+                <!-- Container for displaying user information -->
+                <div id="github-user-info" class="mt-4"></div>
+            </div>
+            <!-- Right column: Trending repositories -->
+            <div class="column is-half">
+                <h2 class="title is-4">Trending Repositories</h2>
+                <!-- Container for displaying trending repos -->
+                <div id="trending-repos"></div>
+            </div>
+        </div>
+        
+        <!-- GitHub Issues Section -->
+        <div class="columns mt-6">
+            <div class="column is-full">
+                <h2 class="title is-4">GitHub Issues for create-react-app</h2>
+                <!-- Button to fetch all issues -->
+                <button id="fetch-issues" class="button is-info mb-4">Fetch All Issues</button>
+                
+                <!-- Form for fetching a specific issue -->
+                <form id="specific-issue-form" class="mb-4">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input" type="number" id="issue-number" placeholder="Enter issue number" required>
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Fetch Specific Issue</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <!-- Container for displaying GitHub issues -->
+                <div id="github-issues"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>&copy; 2024 GitHub Explorer. Powered by GitHub API.</p>
+        </div>
+    </footer>
+    
+    <!-- Link to the JavaScript file -->
+    <script src="./scripts/scripts.js"></script>
 </body>
 </html>

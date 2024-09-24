@@ -1,0 +1,143 @@
+/* Base styles */
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.dark-mode .navbar {
+    background-color: #0d0d0d;
+}
+
+.dark-mode .hero {
+    background-color: #1c4d7d;
+    color: #ffffff;
+}
+
+.dark-mode .box, .dark-mode .card {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.dark-mode .title, .dark-mode .subtitle {
+    color: #ffffff;
+}
+
+.dark-mode .input {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.dark-mode .footer {
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+}
+
+/* Button styles for dark mode */
+.dark-mode .button {
+    color: #ffffff;
+}
+
+.dark-mode .button.is-info {
+    background-color: #3273dc;
+}
+
+.dark-mode .button.is-primary {
+    background-color: #00d1b2;
+}
+
+.dark-mode .button.is-warning {
+    background-color: #ffdd57;
+    color: #363636;
+}
+
+/* Trending repositories styles for dark mode */
+.dark-mode #trending-repos .box {
+    border: 1px solid #4a4a4a;
+    background-color: #333333;
+}
+
+.dark-mode #trending-repos .box .content p strong {
+    color: #ffffff;
+}
+
+.dark-mode #trending-repos .box .content p {
+    color: #e0e0e0;
+}
+
+.dark-mode #trending-repos .box .content p small {
+    color: #bdbdbd;
+}
+
+.dark-mode #trending-repos .box .media-content .content p:first-child {
+    color: #ffffff;
+}
+
+.dark-mode #trending-repos .box .level-item {
+    color: #64b5f6;
+}
+
+/* Ensure text in the search input is visible */
+.dark-mode #github-username::placeholder {
+    color: #888;
+}
+
+/* Style for the dark mode toggle button */
+#dark-mode-toggle {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+.dark-mode #dark-mode-toggle {
+    background-color: #f5f5f5;
+    color: #363636;
+}
+
+/* Additional styles for better overall visibility and contrast */
+.dark-mode a {
+    color: #4fc3f7;
+}
+
+.dark-mode .notification {
+    background-color: #424242;
+    color: #ffffff;
+}
+
+.dark-mode .notification.is-danger {
+    background-color: #ff5252;
+    color: #ffffff;
+}
+
+/* Styles for GitHub user info in dark mode */
+.dark-mode #github-user-info .card {
+    background-color: #333333;
+}
+
+.dark-mode #github-user-info .card-content {
+    color: #e0e0e0;
+}
+
+.dark-mode #github-user-info .title,
+.dark-mode #github-user-info .subtitle {
+    color: #ffffff;
+}
+
+/* Styles for GitHub issues in dark mode */
+.dark-mode #github-issues .box {
+    background-color: #333333;
+    border: 1px solid #4a4a4a;
+}
+
+.dark-mode #github-issues .box .content p strong {
+    color: #ffffff;
+}
+
+/* Transition for smooth theme switching */
+body, .navbar, .hero, .box, .card, .button, .input, .footer,
+#trending-repos .box, #github-user-info .card, #github-issues .box {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
