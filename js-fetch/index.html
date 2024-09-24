@@ -1,124 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Explorer</title>
+<!DOCTYPE html> <!-- Declares that this is an HTML5 document -->
+<html lang="en"> <!-- Opens the HTML tag and sets the language to English -->
+<head> <!-- Contains meta information about the HTML page -->
+    <meta charset="UTF-8"> <!-- Specifies the character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive -->
+    <title>GitHub Explorer</title> <!-- Sets the title of the webpage -->
     <!-- Bulma CSS framework for styling -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> <!-- Links to the Bulma CSS framework -->
     <!-- Link to our custom CSS file -->
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css"> <!-- Links to a custom CSS file -->
     <!-- Font Awesome CDN link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Links to Font Awesome for icons -->
 </head>
-<body>
+<body> <!-- The visible part of the HTML document -->
     <!-- Navigation bar -->
-    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <i class="fab fa-github"></i>
-                <span class="ml-2">GitHub Explorer</span>
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation"> <!-- Creates a dark-themed navigation bar -->
+        <div class="navbar-brand"> <!-- Contains the main branding element -->
+            <a class="navbar-item" href="#"> <!-- Creates a clickable navbar item -->
+                <i class="fab fa-github"></i> <!-- Adds a GitHub icon -->
+                <span class="ml-2">GitHub Explorer</span> <!-- Adds text next to the icon -->
             </a>
         </div>
         <!-- Dark mode toggle button -->
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <button id="dark-mode-toggle" class="button">
-                    <span class="icon">
-                        <i class="fas fa-moon"></i>
+        <div class="navbar-end"> <!-- Aligns content to the right side of the navbar -->
+            <div class="navbar-item"> <!-- Creates a navbar item -->
+                <button id="dark-mode-toggle" class="button"> <!-- Creates a button for toggling dark mode -->
+                    <span class="icon"> <!-- Creates an icon container -->
+                        <i class="fas fa-moon"></i> <!-- Adds a moon icon -->
                     </span>
-                    <span>Toggle Dark Mode</span>
+                    <span>Toggle Dark Mode</span> <!-- Adds text next to the icon -->
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- The rest of your HTML remains unchanged -->
-    
     <!-- Hero section for main title -->
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <p class="title">Explore GitHub Users, Repos, and Issues</p>
-            <p class="subtitle">Discover amazing developers, projects, and their issues!</p>
+    <section class="hero is-primary"> <!-- Creates a hero section with primary color -->
+        <div class="hero-body"> <!-- Contains the main content of the hero section -->
+            <p class="title">Explore GitHub Users, Repos, and Issues</p> <!-- Main title -->
+            <p class="subtitle">Discover amazing developers, projects, and their issues!</p> <!-- Subtitle -->
         </div>
     </section>
 
     <!-- Main content container -->
-    <div class="container mt-5">
+    <div class="container mt-5"> <!-- Creates a container with top margin -->
         <!-- Two-column layout for user search and trending repos -->
-        <div class="columns">
+        <div class="columns"> <!-- Creates a column layout -->
             <!-- Left column: GitHub user search -->
-            <div class="column is-half">
-                <h2 class="title is-4">Search GitHub User</h2>
+            <div class="column is-half"> <!-- Creates a column that takes up half the width -->
+                <h2 class="title is-4">Search GitHub User</h2> <!-- Section title -->
                 <!-- Form for user search -->
-                <form id="github-form">
-                    <div class="field has-addons">
-                        <div class="control is-expanded">
-                            <input class="input" type="text" id="github-username" placeholder="Enter GitHub username" required>
+                <form id="github-form"> <!-- Creates a form for searching GitHub users -->
+                    <div class="field has-addons"> <!-- Creates a field with add-ons -->
+                        <div class="control is-expanded"> <!-- Expands the control to fill available space -->
+                            <input class="input" type="text" id="github-username" placeholder="Enter GitHub username" required> <!-- Input field for GitHub username -->
                         </div>
-                        <div class="control">
-                            <button class="button is-info" type="submit">
-                                <span class="icon">
-                                    <i class="fas fa-search"></i>
+                        <div class="control"> <!-- Creates a control for the button -->
+                            <button class="button is-info" type="submit"> <!-- Submit button -->
+                                <span class="icon"> <!-- Icon container -->
+                                    <i class="fas fa-search"></i> <!-- Search icon -->
                                 </span>
-                                <span>Search</span>
+                                <span>Search</span> <!-- Button text -->
                             </button>
                         </div>
                     </div>
                 </form>
                 <!-- Additional search buttons -->
-                <div class="field is-grouped mt-3">
-                    <div class="control">
-                        <button id="search-add" class="button is-primary">Search and Add</button>
+                <div class="field is-grouped mt-3"> <!-- Groups buttons together with top margin -->
+                    <div class="control"> <!-- Control for the first button -->
+                        <button id="search-add" class="button is-primary">Search and Add</button> <!-- "Search and Add" button -->
                     </div>
-                    <div class="control">
-                        <button id="search-replace" class="button is-warning">Search and Replace</button>
+                    <div class="control"> <!-- Control for the second button -->
+                        <button id="search-replace" class="button is-warning">Search and Replace</button> <!-- "Search and Replace" button -->
                     </div>
                 </div>
                 <!-- Container for displaying user information -->
-                <div id="github-user-info" class="mt-4"></div>
+                <div id="github-user-info" class="mt-4"></div> <!-- Empty div for displaying GitHub user info -->
             </div>
             <!-- Right column: Trending repositories -->
-            <div class="column is-half">
-                <h2 class="title is-4">Trending Repositories</h2>
+            <div class="column is-half"> <!-- Creates a column that takes up half the width -->
+                <h2 class="title is-4">Trending Repositories</h2> <!-- Section title -->
                 <!-- Container for displaying trending repos -->
-                <div id="trending-repos"></div>
+                <div id="trending-repos"></div> <!-- Empty div for displaying trending repositories -->
             </div>
         </div>
         
         <!-- GitHub Issues Section -->
-        <div class="columns mt-6">
-            <div class="column is-full">
-                <h2 class="title is-4">GitHub Issues for create-react-app</h2>
+        <div class="columns mt-6"> <!-- Creates a column layout with top margin -->
+            <div class="column is-full"> <!-- Creates a full-width column -->
+                <h2 class="title is-4">GitHub Issues for create-react-app</h2> <!-- Section title -->
                 <!-- Button to fetch all issues -->
-                <button id="fetch-issues" class="button is-info mb-4">Fetch All Issues</button>
+                <button id="fetch-issues" class="button is-info mb-4">Fetch All Issues</button> <!-- Button to fetch all issues -->
                 
                 <!-- Form for fetching a specific issue -->
-                <form id="specific-issue-form" class="mb-4">
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input class="input" type="number" id="issue-number" placeholder="Enter issue number" required>
+                <form id="specific-issue-form" class="mb-4"> <!-- Form for fetching a specific issue -->
+                    <div class="field has-addons"> <!-- Creates a field with add-ons -->
+                        <div class="control"> <!-- Control for the input -->
+                            <input class="input" type="number" id="issue-number" placeholder="Enter issue number" required> <!-- Input for issue number -->
                         </div>
-                        <div class="control">
-                            <button type="submit" class="button is-primary">Fetch Specific Issue</button>
+                        <div class="control"> <!-- Control for the button -->
+                            <button type="submit" class="button is-primary">Fetch Specific Issue</button> <!-- Submit button -->
                         </div>
                     </div>
                 </form>
                 
                 <!-- Container for displaying GitHub issues -->
-                <div id="github-issues"></div>
+                <div id="github-issues"></div> <!-- Empty div for displaying GitHub issues -->
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>&copy; 2024 GitHub Explorer. Powered by GitHub API.</p>
+    <footer class="footer"> <!-- Creates a footer -->
+        <div class="content has-text-centered"> <!-- Centers the content -->
+            <p>&copy; 2024 GitHub Explorer. Powered by GitHub API.</p> <!-- Copyright information -->
         </div>
     </footer>
     
     <!-- Link to the JavaScript file -->
-    <script src="./scripts/scripts.js"></script>
+    <script src="./scripts/scripts.js"></script> <!-- Links to the JavaScript file -->
 </body>
 </html>

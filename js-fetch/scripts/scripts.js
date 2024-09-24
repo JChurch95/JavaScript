@@ -54,8 +54,11 @@ function fetchGitHubUser(username, action = 'replace') {
 
 // Function to create a card displaying user information
 function createUserCard(user) {
+    // Create a new div element for the card
     const card = document.createElement('div');
+    // Add CSS classes to the card
     card.className = 'card mb-4';
+    // Populate the card with user information using template literals
     card.innerHTML = `
         <div class="card-content">
             <div class="media">
@@ -77,17 +80,24 @@ function createUserCard(user) {
             </div>
         </div>
     `;
+    // Return the created card
     return card;
 }
 
 // Function to fetch trending repositories
 function fetchTrendingRepos() {
+    // Create a new XMLHttpRequest object
     const request = new XMLHttpRequest();
+    // Get the container where trending repos will be displayed
     const reposContainer = document.getElementById('trending-repos');
 
+    // Set up the callback for when the request state changes
     request.onreadystatechange = function () {
+        // Check if the request is complete
         if (this.readyState === 4) {
+            // Check if the request was successful
             if (this.status === 200) {
+                // Parse the JSON response
                 const repos = JSON.parse(this.responseText);
                 // Create HTML for the first 5 trending repositories
                 reposContainer.innerHTML = repos.items.slice(0, 5).map(repo => `
@@ -118,62 +128,81 @@ function fetchTrendingRepos() {
                     </div>
                 `).join('');
             } else {
+                // Log error and display error message
                 console.error('Error fetching trending repos:', this.status);
                 reposContainer.innerHTML = '<p class="notification is-danger">Error fetching trending repositories. Please try again later.</p>';
             }
         }
     };
 
+    // Set up and send the request to GitHub API
     request.open("GET", "https://api.github.com/search/repositories?q=stars:>1&sort=stars&order=desc", true);
     request.send();
 }
 
 // Function to fetch all GitHub Issues for create-react-app
 function fetchAllGitHubIssues() {
+    // Create a new XMLHttpRequest object
     const request = new XMLHttpRequest();
+    // Get the container where issues will be displayed
     const issuesContainer = document.getElementById('github-issues');
 
+    // Set up the callback for when the request state changes
     request.onreadystatechange = function () {
+        // Check if the request is complete
         if (this.readyState === 4) {
+            // Check if the request was successful
             if (this.status === 200) {
+                // Parse the JSON response
                 const issues = JSON.parse(this.responseText);
                 // Create HTML for each issue, displaying title and body
                 issuesContainer.innerHTML = issues.map(issue => createIssueHTML(issue)).join('');
             } else {
+                // Log error and display error message
                 console.error('Error fetching GitHub issues:', this.status);
                 issuesContainer.innerHTML = '<p class="notification is-danger">Error fetching GitHub issues. Please try again later.</p>';
             }
         }
     };
 
+    // Set up and send the request to GitHub API
     request.open("GET", "https://api.github.com/repos/facebook/create-react-app/issues", true);
     request.send();
 }
 
 // Function to fetch a specific GitHub Issue
 function fetchSpecificGitHubIssue(issueNumber) {
+    // Create a new XMLHttpRequest object
     const request = new XMLHttpRequest();
+    // Get the container where the issue will be displayed
     const issuesContainer = document.getElementById('github-issues');
 
-    request.onreadystatechange = function () {
+    // Set up the callback for when the request state changes
+    request.onreadystatestate = function () {
+        // Check if the request is complete
         if (this.readyState === 4) {
+            // Check if the request was successful
             if (this.status === 200) {
+                // Parse the JSON response
                 const issue = JSON.parse(this.responseText);
                 // Clear previous issues and display the specific issue
                 issuesContainer.innerHTML = createIssueHTML(issue);
             } else {
+                // Log error and display error message
                 console.error('Error fetching specific GitHub issue:', this.status);
                 issuesContainer.innerHTML = '<p class="notification is-danger">Error fetching the specific GitHub issue. Please check the issue number and try again.</p>';
             }
         }
     };
 
+    // Set up and send the request to GitHub API
     request.open("GET", `https://api.github.com/repos/facebook/create-react-app/issues/${issueNumber}`, true);
     request.send();
 }
 
 // Function to create HTML for a single issue
 function createIssueHTML(issue) {
+    // Return HTML string for the issue using template literals
     return `
         <div class="box">
             <article class="media">
@@ -191,7 +220,7 @@ function createIssueHTML(issue) {
     `;
 }
 
-// New: Function to toggle dark mode
+// Function to toggle dark mode
 function toggleDarkMode() {
     // Toggle the 'dark-mode' class on the body element
     document.body.classList.toggle('dark-mode');
@@ -213,7 +242,7 @@ function toggleDarkMode() {
     }
 }
 
-// New: Function to check and set initial dark mode state
+// Function to check and set initial dark mode state
 function checkDarkMode() {
     // Check if dark mode was previously enabled
     if (localStorage.getItem('darkMode') === 'enabled') {
@@ -224,30 +253,42 @@ function checkDarkMode() {
 
 // Event listener for form submission (Search and Replace)
 document.getElementById('github-form').addEventListener('submit', function(e) {
+    // Prevent the default form submission behavior
     e.preventDefault();
+    // Get the entered username
     const username = document.getElementById('github-username').value;
+    // Fetch the GitHub user info and replace existing content
     fetchGitHubUser(username, 'replace');
-    this.reset(); // Clear the form
+    // Clear the form
+    this.reset();
 });
 
 // Event listener for Search and Add button
 document.getElementById('search-add').addEventListener('click', function() {
+    // Get the entered username
     const username = document.getElementById('github-username').value;
     if (username) {
+        // If username is not empty, fetch the GitHub user info and add to existing content
         fetchGitHubUser(username, 'add');
-        document.getElementById('github-form').reset(); // Clear the form
+        // Clear the form
+        document.getElementById('github-form').reset();
     } else {
+        // If username is empty, show an alert
         alert('Please enter a GitHub username');
     }
 });
 
 // Event listener for Search and Replace button
 document.getElementById('search-replace').addEventListener('click', function() {
+    // Get the entered username
     const username = document.getElementById('github-username').value;
     if (username) {
+        // If username is not empty, fetch the GitHub user info and replace existing content
         fetchGitHubUser(username, 'replace');
-        document.getElementById('github-form').reset(); // Clear the form
+        // Clear the form
+        document.getElementById('github-form').reset();
     } else {
+        // If username is empty, show an alert
         alert('Please enter a GitHub username');
     }
 });
@@ -257,24 +298,29 @@ document.getElementById('fetch-issues').addEventListener('click', fetchAllGitHub
 
 // Event listener for Fetch Specific Issue form
 document.getElementById('specific-issue-form').addEventListener('submit', function(e) {
+    // Prevent the default form submission behavior
     e.preventDefault();
+    // Get the entered issue number
     const issueNumber = document.getElementById('issue-number').value;
     if (issueNumber) {
+        // If issue number is not empty, fetch the specific GitHub issue
         fetchSpecificGitHubIssue(issueNumber);
-        this.reset(); // Clear the form
+        // Clear the form
+        this.reset();
     } else {
+        // If issue number is empty, show an alert
         alert('Please enter an issue number');
     }
 });
 
-// New: Event listener for dark mode toggle button
+// Event listener for dark mode toggle button
 document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
 
-// Updated: DOMContentLoaded event listener to include dark mode check
+// DOMContentLoaded event listener to initialize the page
 document.addEventListener('DOMContentLoaded', function() {
     // Check and set initial dark mode state
     checkDarkMode();
-    // Fetch trending repositories (existing functionality)
+    // Fetch trending repositories
     fetchTrendingRepos();
 });
 
