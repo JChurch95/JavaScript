@@ -1,1 +1,1 @@
-# Files containing all javascript exercises
+# Files containing all JavaScript exercises
