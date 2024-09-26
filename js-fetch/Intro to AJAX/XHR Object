@@ -1,0 +1,28 @@
+//To make your first AJAX request, you will use the XMLHttpRequest object.
+const request = new XMLHttpRequest();
+//There is an event listening property on the object called onreadystatechange that 
+//will be triggered every time the request updates to the browser.
+request.onreadystatechange = function () {
+    //For our code sample, we will check that the ready state is finished 
+    //and the response is ready by checking to see if the ready state is at 4.
+    if (this.readyState === 4 && this.status === 200) { //Will check for status 200, which is the standard status code for successful requests.
+    console.log(this);
+    }
+};
+//You initialize the HTTP response method using the open() function. The first argument 
+//is the method type, the second argument is the URL to the resource.
+request.open("GET", "./sample.txt");
+//Finally, you call the send() function to execute the request.
+request.send();
+
+
+//Another way is to use fetch(). The fetch() function is built into modern browsers. 
+//It simplifies the process of making AJAX requests and uses Promises to handle your asynchronous code.
+fetch("./sample.txt").then((response) => {
+    console.log(response);
+  });
+
+//By default, fetch() makes GET requests. 
+//You pass in the URL to the resource you want. You chain a call to .then() and pass in your handler function.
+//What took 8 lines before only takes 3 with fetch()! Because it uses promises you also 
+//have more control of when and how you use the request data.

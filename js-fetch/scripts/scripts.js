@@ -2,6 +2,7 @@
 function fetchGitHubUser(username, action = 'replace') {
     // Create a new XMLHttpRequest object
     const request = new XMLHttpRequest();
+    
     // Get the container where user info will be displayed
     const userInfoContainer = document.getElementById('github-user-info');
 
